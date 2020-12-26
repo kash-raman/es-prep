@@ -1,0 +1,120 @@
+ GET _cat/nodes
+ 
+ GET _cat/indices
+ POST _forcemerge
+ GET olympic-events-fixed/_search
+ 
+ GET olympic-events-fixed/_search
+ {
+   "query": {
+     "term": {
+       "medal": {
+         "value": "Gold"
+       }
+     }
+   },
+   "sort": [
+     {
+       "age": {
+         "order": "desc"
+       }
+     }
+   ],
+   "size": 50
+ }
+ 
+#TODO 26 -option 1 highlight
+GET olympic-events-fixed/_search
+{
+  "query": {
+    "query_string": {
+       
+      "query": "( ( (weight: >=60 AND <=70) OR (age: <20)) AND (event:swimming) )"
+    }
+  },
+  "highlight": {
+    "pre_tags": ["{{"], 
+    "post_tags": ["}}"],
+    "fields": {
+      "*": {"fragment_size" : 150, "number_of_fragments" : 3}
+    }
+    
+  },
+  "sort": [
+    {
+      "athleteName.keyword": {
+        "order": "desc"
+      }
+    }
+  ],
+   "size": 50
+}
+
+#TODO 26 -option 2 highlight
+GET olympic-events-fixed/_search
+{
+  "size": 50,
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "event": "swimming"
+          }
+        }
+      ],
+      "should": [
+        {
+          "range": {
+            "weight": {
+              "gte": 60,
+              "lte": 70
+            }
+          }  
+        },
+        {
+          "range": {
+            "age": {
+              "lt": 20
+            }
+          }
+        }
+      ],
+      "minimum_should_match": 1
+    }
+  },
+  "sort": [
+    {
+      "athleteName.keyword": {
+        "order": "desc"
+      }
+    }
+  ], 
+  "highlight": {
+    "fields": {
+       
+       "*": { "fragment_size" : 150, "number_of_fragments" : 3 }
+         
+       }
+    }
+  }
+  
+  PUT olympic-noc-regions
+  {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0
+    }
+  }
+  
+  GET olympic-noc-regions/_search
+  GET _enrich
+  PUT _enrich/policy/olympic-noc-append
+{
+  "match": {
+    "indices": "olympic-noc-regions",
+    "match_field": "noc",
+    "enrich_fields": ["notes", "region"]
+  }
+}
+ 
