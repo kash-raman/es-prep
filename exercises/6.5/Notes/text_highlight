@@ -1,0 +1,236 @@
+GET kibana_sample_data_logs
+GET kibana_sample_data_logs/_search
+{
+   "size": 50,
+   "from": 50, 
+  "query": {
+    "bool": {
+      "must": [
+        {"match": {
+          "message": "Firefox"
+        }} 
+      ]
+    }
+  },"highlight": {
+    "pre_tags": ["{{"],
+    "post_tags": ["}}"],
+    "fields": {
+      "message": {}
+    }
+    
+  }
+}
+GET kibana_sample_data_logs/_search
+{
+   
+  "query": {
+    "bool": {
+      "must": [
+        {"match": {
+          "message": "Firefox"
+        }} 
+      ]
+    }
+  },"highlight": {
+    "pre_tags": ["{{"],
+    "post_tags": ["}}"],
+    "fields": {
+      "message": {}
+    }
+    
+  }
+}
+
+GET kibana_sample_data_logs/_search
+{
+  "query": {
+    "match": {
+      "message": "Firefox"
+    }
+  }
+}
+GET kibana_sample_data_logs/_search
+{
+  "query": {
+    "match": {
+      "message": "Kibana"
+    }
+  }
+}
+GET kibana_sample_data_logs/_search
+{
+  "query": {
+     "query_string": {
+       "default_field": "message",
+       "query": "Firefox AND Kibana"
+     }
+  }
+}
+GET kibana_sample_data_logs/_search
+{
+  "query": {
+     "query_string": {
+       "default_field": "message",
+       "query": "Firefox OR Kibana"
+     }
+  }
+}
+GET kibana_sample_data_logs/_search
+{
+  "size": 50, 
+  "from": 50, 
+  "query": {
+    "bool": {
+      "must": [
+        {"match": {
+          "message": "Firefox"
+        }},
+        {"match": {
+          "message": "Kibana"
+        }}
+        ,
+        {"match": {
+          "message": "159.64.35.129"
+        }}
+      ] 
+    }
+     
+  },"highlight": {
+    "pre_tags": ["{{"],
+    "post_tags": ["}}"],
+    "fields": {
+      "message": {}
+    }
+    
+    
+  }
+}
+
+GET kibana_sample_data_logs/_search
+{
+  "size": 50, 
+  "from": 50, 
+  "query": {
+    "bool": {
+      "must": [
+        { "query_string": {
+          "default_field": "message",
+          "query": "Firefox  Mozilla  159.64.35.129",
+          "minimum_should_match": "60%"
+        }
+          
+        }
+        
+      ]
+    }
+  },"highlight": {
+    "pre_tags": ["{{"],
+    "post_tags": ["}}"],
+    "fields": {
+      "message": {}
+    }
+         
+  }
+}
+GET kibana_sample_data_logs/_search
+{
+  "size": 50, 
+  "from": 50, 
+  "query": {
+    "bool": {
+      "must": [
+        { "query_string": {
+          "default_field": "message",
+          "query": "Firefox AND Mozilla"
+        }
+          
+        }
+        
+      ]
+    }
+  },"highlight": {
+    "pre_tags": ["{{"],
+    "post_tags": ["}}"],
+    "fields": {
+      "message": {}
+    }
+         
+  }
+}
+
+
+GET kibana_sample_data_logs/_search
+{
+  "query": {
+    "match_phrase": {
+      "message": "HTTP/1.1 200 51"
+    }
+  }
+}
+GET kibana_sample_data_logs/_search
+{
+  "query": {
+    "match_phrase": {
+      "message": "HTTP/1.1 200 51"
+    }
+  },
+  "sort": [
+    {
+      "machine.os.keyword": {
+        "order": "desc"
+      }
+    }
+  ]
+}
+GET kibana_sample_data_logs/_search
+{
+  "query": {
+    "match_phrase": {
+      "message": "HTTP/1.1 200 51"
+    }
+  },
+  "sort": [
+    {
+      "machine.os.keyword": {
+        "order": "desc"
+      },
+      "timestamp": {
+        "order": "asc"
+      }
+    }
+  ]
+}
+
+GET kibana_sample_data_ecommerce
+GET kibana_sample_data_ecommerce/_search
+{
+  "query": {
+    "term": {
+      "day_of_week": {
+        "value": "Monday"
+      }
+    }
+  }
+  
+}
+
+GET kibana_sample_data_ecommerce/_search
+{
+  "query": {
+    "term": {
+      "day_of_week": {
+        "value": "Monday"
+      }
+    }
+  },
+  "sort": [
+    {
+      "products.base_price": {
+        "order": "desc",
+        "mode": "min"
+      }
+    }
+  ]
+  
+}
+

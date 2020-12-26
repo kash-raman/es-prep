@@ -1,0 +1,127 @@
+GET _cat/nodes
+GET _cat/nodeattrs?s=attr,node
+
+GET _cat/shards?s=i
+
+DELETE hamlet_1
+DELETE hamlet_2
+
+PUT hamlet-1
+{
+  "settings": {
+    "number_of_replicas": 1,
+    "number_of_shards": 2
+  }
+}
+
+PUT hamlet-1/_doc/_bulk
+{"index":{"_index":"hamlet-1","_id":0}}
+{"line_number":"1","speaker":"BERNARDO","text_entry":"Whos there?"}
+{"index":{"_index":"hamlet-1","_id":1}}
+{"line_number":"2","speaker":"FRANCISCO","text_entry":"Nay, answer me: stand, and unfold yourself."}
+{"index":{"_index":"hamlet-1","_id":2}}
+{"line_number":"3","speaker":"BERNARDO","text_entry":"Long live the king!"}
+{"index":{"_index":"hamlet-1","_id":3}}
+{"line_number":"4","speaker":"FRANCISCO","text_entry":"Bernardo?"}
+{"index":{"_index":"hamlet-1","_id":4}}
+{"line_number":"5","speaker":"BERNARDO","text_entry":"He."}
+PUT hamlet-2
+{
+  "settings": {
+    "number_of_replicas": 1,
+    "number_of_shards": 2
+  }
+}
+PUT hamlet-2/_doc/_bulk
+{"index":{"_index":"hamlet-2","_id":5}}
+{"line_number":"6","speaker":"FRANCISCO","text_entry":"You come most carefully upon your hour."}
+{"index":{"_index":"hamlet-2","_id":6}}
+{"line_number":"7","speaker":"BERNARDO","text_entry":"Tis now struck twelve; get thee to bed, Francisco."}
+{"index":{"_index":"hamlet-2","_id":7}}
+{"line_number":"8","speaker":"FRANCISCO","text_entry":"For this relief much thanks: tis bitter cold,"}
+{"index":{"_index":"hamlet-2","_id":8}}
+{"line_number":"9","speaker":"FRANCISCO","text_entry":"And I am sick at heart."}
+{"index":{"_index":"hamlet-2","_id":9}}
+{"line_number":"10","speaker":"BERNARDO","text_entry":"Have you had quiet guard?"}
+
+GET _cat/indices?s=i
+GET _cat/shards/hamlet-*?s=i,prirep&v
+
+PUT hamlet-1/_settings
+{
+  "index.routing.allocation.require._name":"node2"
+}
+
+GET _cluster/allocation/explain
+{
+  "index": "hamlet-2",
+  "primary": false,
+  "shard": 0
+}
+PUT hamlet-2/_settings
+{
+  "index.routing.allocation.exclude._name":"node3"
+}
+
+GET _cluster/allocation/explain?include_yes_decisions=true
+
+PUT hamlet-1/_settings
+{
+  "index.routing.allocation.require._name":null
+}
+PUT hamlet-2/_settings
+{
+  "index.routing.allocation.exclude._name": null
+}
+
+GET hamlet-1
+GET hamlet-2
+
+
+PUT _cluster/settings
+{
+  "persistent": {
+    "cluster.routing.allocation.awareness.attributes": "AZ",
+    "cluster.routing.allocation.awareness.force.AZ.values" :"earth,mars"
+    }
+  }
+ GET _cluster/stats/nodes
+PUT test_force
+{
+  "settings": {
+    "number_of_replicas": 1,
+    "number_of_shards": 1
+  }
+}
+
+GET _cat/indices
+GET _cat/nodes
+GET _cat/shards/test_force
+
+DELETE test_force
+
+GET hamlet-1
+GET _cat/shards/hamlet-1
+GET _cat/nodeattrs?s=attr
+PUT hamlet-1/_settings
+{
+  "index.routing.allocation.include.temp": "hot"
+}
+GET _cat/shards/hamlet-1
+
+PUT hamlet-1/_settings
+{
+  "index.routing.allocation.include.temp": null
+}
+GET _cat/shards/hamlet-2
+GET _cat/nodeattrs?s=attr
+GET _cat/shards/hamlet-2
+
+PUT hamlet-2/_settings
+{
+  "index.routing.allocation.exclude.storage": "small"
+}
+GET _cat/shards/hamlet-2
+
+
+

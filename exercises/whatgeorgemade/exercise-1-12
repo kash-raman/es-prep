@@ -1,0 +1,229 @@
+GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+GET _cat/nodes
+GET _cat/health
+GET _cat/master
+
+GET _cluster/state
+GET _cat/indices
+
+POST _forcemerge
+
+PUT olympic-events 
+{
+  "settings": {
+    "refresh_interval": "1m"
+  }
+}
+
+GET olympic-events/_search
+
+GET _cluster/allocation/explain
+GET _cat/shards/olympic-events
+
+PUT olympic-events/_settings
+{
+  "number_of_replicas": 0
+}
+
+GET olympic-events
+
+GET olympic-events/_search
+{"size": 0, 
+  "aggs": {
+    "age_": {
+      "terms": {
+        "field": "Age.keyword",
+        "size": 1000
+      }
+    }
+  }
+}
+
+GET olympic-events/_search
+{
+  "size": 0, 
+  "query": {
+    "bool": {
+      "must_not": [
+        { "regexp": {
+      "Age": "[0-9]*"
+    }}
+      ]
+    } 
+   
+  }, "aggs": {
+    "age_": {
+      "terms": {
+        "field": "Age.keyword",
+        "size": 1000
+      }
+    }
+  }
+}
+
+POST _reindex
+{
+  "source": {"index": "olympic-events"},
+  "dest": {"index": "olympic-events-backup"}
+}
+
+POST olympic-events/_delete_by_query
+{
+  "query": {
+    "bool": {
+      "must_not": [
+        { "regexp": {
+      "Weight": "[0-9]*"
+    }}
+      ]
+    } 
+   
+  }
+}
+
+GET olympic-events/_search
+
+PUT _ingest/pipeline/split_games
+{
+  "processors": [
+    {
+      "grok": {
+        "field": "Games",
+        "patterns": ["%{NUMBER:year} %{WORD:season}"] 
+      },
+      "remove": {
+        "field": "Games"
+      }
+      
+    }
+  ]
+}
+
+GET _ingest/pipeline/_simulate
+{
+  "pipeline": {
+  "processors": [
+    {
+      "grok": {
+        "field": "Games",
+        "patterns": ["%{NUMBER:year} %{WORD:season}"] 
+      },
+      "remove": {
+        "field": "Games"
+      }
+      
+    }
+  ]
+},
+  "docs": [
+    { "_source" : {
+          "NOC" : "ARG",
+          "Sex" : "M",
+          "City" : "Los Angeles",
+          "Weight" : "98",
+          "Name" : "Ernesto Arturo Alas",
+          "Sport" : "Shooting",
+          "Games" : "1984 Summer",
+          "Event" : "Shooting Men's Free Pistol, 50 metres",
+          "Height" : "186",
+          "Team" : "Argentina",
+          "ID" : 2224,
+          "Medal" : "NA",
+          "Age" : "54"
+        }},
+    { "_source" : {
+          "NOC" : "TUR",
+          "Sex" : "M",
+          "City" : "Mexico City",
+          "Weight" : "62",
+          "Name" : "Metin Hizir Alako",
+          "Sport" : "Wrestling",
+          "Games" : "1968 Summer",
+          "Event" : "Wrestling Men's Featherweight, Greco-Roman",
+          "Height" : "170",
+          "Team" : "Turkey",
+          "ID" : 2227,
+          "Medal" : "NA",
+          "Age" : "26"
+        }}
+    ]
+}
+
+POST olympic-events/_update_by_query?pipeline=split_games
+
+
+
+PUT olympic-events-fixed
+{
+  "settings": {
+    "number_of_replicas": 0,
+    "number_of_shards": 1
+  },
+  "mappings": {
+    "properties": {
+      "athleteId": {
+        "type": "integer"
+      },
+      "age": {
+        "type": "short"
+      },
+      "height": {
+        "type": "short"
+      },
+      "weight": {
+        "type": "short"
+      },
+      "athleteName": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
+      "gender": {
+        "type": "keyword"
+      },
+      "team": {
+        "type": "keyword"
+      },
+      "noc": {
+        "type": "keyword"
+      },
+      "year": {
+        "type": "short"
+      },
+      "season": {
+        "type": "keyword"
+      },
+      "city": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
+      "sport": {
+        "type": "keyword"
+      },
+      "event": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
+      "medal": {
+        "type": "keyword"
+      }
+    }
+  }
+}

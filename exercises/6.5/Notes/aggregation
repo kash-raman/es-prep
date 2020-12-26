@@ -1,0 +1,286 @@
+ GET kibana_sample_data_flights/_search
+ {
+   "size": 0,
+   "aggs": {
+     "max_distance": {
+       "max": {
+         "field": "DistanceKilometers"
+       }
+     }
+   }
+ }
+ 
+ GET kibana_sample_data_flights/_search
+ {
+   "size": 0,
+   "aggs": {
+     "stats_flight_time": {
+       "stats": {
+         "field": "FlightTimeMin"
+       }
+     }
+   }
+ }
+  GET kibana_sample_data_flights/_search
+ {
+   "size": 0,
+   "aggs": {
+     "cardinality_origin_cities": {
+       "cardinality": {
+         "field": "OriginCityName"
+       } 
+       
+     },
+     "cardinality_dest_cities": {
+       "cardinality": {
+         "field": "DestCityName"
+       } 
+       
+     }
+     }
+   }
+  GET kibana_sample_data_flights/_search
+ {
+   "size": 0,
+   "aggs": {
+     "popular_origin_cities": {
+       "terms": {
+         "field": "OriginCityName",
+         "size": 5,
+         "order": {
+           "_count": "desc"
+         }
+       }
+     }
+   }
+ }
+   GET kibana_sample_data_flights/_search
+ {
+   "size": 0,
+   "aggs": {
+      "avg_price_histogram": {
+        "histogram": {
+          "field": "AvgTicketPrice",
+          "interval": 250
+        }
+      }
+   }
+ }
+ 
+GET kibana_sample_data_flights/_search
+{
+  "size": 0,
+  "aggs": {
+    "popular_carriers": {
+      "terms": {
+        "field": "Carrier"
+      },
+      "aggs": {
+        "carrier_stats_delay": {
+          "stats": {
+            "field": "FlightDelayMin"
+          }
+        },
+        "carrier_max_delay": {
+          "top_hits": {
+            "size": 1,
+            "sort": [
+              {
+                "FlightDelayMin": {
+                  "order": "desc"
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
+GET kibana_sample_data_flights/_search
+{
+  "size": 0,
+  "aggs": {
+    "flights_every_10_days":{
+      "date_histogram": {
+        "field": "timestamp",
+        "fixed_interval": "10d",
+        "format": "yyyy-MM-dd"
+        
+      }
+    }
+  }
+}
+# validate -- Add a sub-aggregation to the sub-aggregation "destinations_by_day", named "popular_destinations_by_day", that returns the 3 most popular documents for each bucket (i.e., ordered by their score)
+GET kibana_sample_data_flights/_search
+{
+  "size": 0,
+  "aggs": {
+    "flights_by_day":{
+      "date_histogram": {
+        "field": "timestamp",
+        "fixed_interval": "1d",
+        "format": "yyyy-MM-dd"
+      },
+      "aggs": {
+        "destinations_by_day": {
+          "terms": {
+            "field": "DestCityName",
+            "size": 5,
+            "order": {
+              "_count": "desc"
+            }
+          },
+          "aggs": {
+            "popular_destinations_by_day": {
+              "top_hits": {
+                "size": 3 
+                 , "_source": { "includes": "DestCityName"}
+              }
+            }
+          }
+        }
+      }
+    }
+    
+  }
+}
+GET kibana_sample_data_flights/_search
+{
+  "size": 0,
+  "aggs": {
+    "flights_by_day":{
+      "date_histogram": {
+        "field": "timestamp",
+        "fixed_interval": "1d",
+        "format": "yyyy-MM-dd"
+      },
+      "aggs": {
+        "destinations_by_day": {
+          "terms": {
+            "field": "DestCityName",
+            "size": 5,
+            "order": {
+              "_count": "desc"
+            }
+          } 
+        }
+      }
+    },
+    "popular_destinations_by_day": {
+      "max_bucket": {
+        "buckets_path": "flights_by_day>destinations_by_day"
+        
+      }
+    }
+    
+  }
+}
+GET kibana_sample_data_flights/_search
+GET kibana_sample_data_flights/_search
+{
+  "size": 0,
+  "aggs": {
+    "flights_by_day": {
+      "date_histogram": {
+        "field": "timestamp",
+        "fixed_interval": "1d",
+        "format": "yyyy-MM-dd"
+      },
+      "aggs": {
+          "popular_dest":{
+            "terms": {
+              "field": "DestCityName" 
+              ,"size": 1
+            }
+          },
+           "max_c":
+           {
+             "max_bucket": {
+               "buckets_path": "popular_dest>_count"
+             }
+           }
+      }
+      
+    } 
+}
+}
+
+GET kibana_sample_data_flights/_search
+{
+  "size": 0,
+  "aggs": {
+    "flights_by_day": {
+      "date_histogram": {
+        "field": "timestamp",
+        "fixed_interval": "1d",
+        "format": "yyyy-MM-dd"
+      },
+      "aggs": {
+         "unique_flights":{
+           "cardinality": {
+             "field": "FlightNum"
+           }
+         }
+      }
+      
+    },
+    "day_with_most_flights":{
+      "max_bucket": {
+        "buckets_path": "flights_by_day._count"
+      }
+    }
+  }
+}
+
+
+GET kibana_sample_data_flights/_search
+{
+  "size": 0,
+  "aggs": {
+    "popular_dest": {
+      "terms": {
+        "field": "DestCityName",
+        "size": 10
+      } 
+    },
+   "test":
+   {
+     "max_bucket": {
+       "buckets_path": "popular_dest>_count"
+     }
+   }
+    
+  }
+}
+
+
+GET kibana_sample_data_flights/_search
+{
+  "size": 0,
+  "aggs": {
+    "flights_by_day": {
+      "date_histogram": {
+        "field": "timestamp",
+        "fixed_interval": "1d",
+        "format": "yyyy-MM-dd"
+      },
+      "aggs": {
+          "popular_dest":{
+            "terms": {
+              "field": "DestCityName" 
+              ,"size": 100
+            }
+            
+          },
+          "sum_values":
+          {
+            "sum_bucket": {
+              "buckets_path": "popular_dest._count"
+            }
+          }
+      }
+      
+    } 
+}
+}

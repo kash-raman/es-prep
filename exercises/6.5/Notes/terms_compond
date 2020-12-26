@@ -1,0 +1,229 @@
+GET _cat/indices
+
+GET kibana_sample_data_logs
+GET kibana_sample_data_logs/_search
+GET kibana_sample_data_logs/_search
+{
+  "query": {
+    "range": {
+      "response.keyword": {
+        "gte": 400,
+        "lt": 5000
+      }
+    }
+  }
+}
+GET kibana_sample_data_logs/_search
+{
+  "query": {
+    "bool":{
+      "must": [
+         {
+            "range": {
+      "response.keyword": {
+        "gte": 400,
+        "lt": 5000
+      }
+    }
+         }
+      ],"filter": {
+         "term": {
+           "referer": {
+             "value": "http://twitter.com/success/guion-bluford"
+           }
+         } 
+      }
+    }
+   
+  }
+}
+GET kibana_sample_data_logs/_search
+{
+  "query": {
+    "prefix": {
+      "referer": {
+        "value": "http://twitter.com/success"
+      }
+    }
+  }
+}
+GET kibana_sample_data_logs/_search
+{
+  "query": {
+    "prefix": {
+      "request": {
+        "value": "people"
+      }
+    }
+  }
+}
+GET kibana_sample_data_logs/_search
+{
+  "query": {
+    "match": {
+      "request": "people"
+    }
+  }
+}
+GET kibana_sample_data_logs/_search
+{
+  "query": {
+    "bool":{
+       "filter": {
+         "term": {
+           "referer": {
+             "value": "http://twitter.com/success"
+           }
+         } 
+      }
+    }
+   
+  }
+}
+
+ GET kibana_sample_data_logs/_search
+{
+   "query": {
+     "exists": {
+       "field": "memory"
+     }
+   }
+}
+GET kibana_sample_data_logs/_search
+{
+   "query": {
+        "bool": {
+            "must_not": {
+                "exists": {
+                    "field": "memory"
+                }
+            }
+        }
+    }
+}
+
+GET kibana_sample_data_logs/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+           "match": {
+             "agent": "Windows"
+           }
+        },
+        {
+          "match": {
+            "url":   "name:john"
+            
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+GET kibana_sample_data_logs/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+           "match": {
+             "agent": "Windows"
+           }
+        },
+        {
+          "match": {
+            "url":   "name:john"
+            
+          }
+        }
+      ],
+      "filter": {
+        "exists": {
+       "field": "phpmemory"
+     }
+      }
+    }
+  }
+}
+
+GET kibana_sample_data_logs/_search
+{
+  "query": {
+    "bool": {
+      "should": [
+         {"range": {
+           "response": {
+             "gte": 400 
+           }
+         }},
+         {
+           "match": {
+             "tags.keyword": "error"
+           }
+         }
+      ]
+    }
+  }
+}
+GET kibana_sample_data_logs/_search
+{
+  "query": {
+    "bool": {
+      "must_not": [
+        {"terms": {
+          "tags.keyword": [
+            "error",
+            "warning",
+            "info" 
+          ]
+        }}
+      ]
+    }
+  }
+}
+GET kibana_sample_data_logs/_search
+{
+  "query": {
+    "range": {
+       "timestamp": {
+         "gte": "now-1w/d",
+         "lte": "now/d"
+       }
+    }
+  } 
+}
+GET kibana_sample_data_logs/_search
+{
+  "query": {
+    "range": {
+        "clientip": {
+          "gte": "1.0.0.0",
+          "lte": "1.255.255.255"
+        }
+    }
+  } 
+}
+
+GET kibana_sample_data_flights/_search
+{
+  "query": {
+    "multi_match": {
+      "query": "Sydney", 
+      "fields": ["OriginCityName","DestCityName"]
+    }
+  }
+}
+GET kibana_sample_data_flights/_search
+{
+  "query": {
+    "multi_match": {
+      "query": "Sidney", 
+      "fields": ["OriginCityName","DestCityName"],
+      "fuzziness": 2
+    }
+  }
+}

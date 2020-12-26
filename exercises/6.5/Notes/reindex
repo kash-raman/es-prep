@@ -1,0 +1,62 @@
+GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+GET /original:hamlet,hamlet-pirate/_search
+{
+  "query": {
+    "match": {
+      "speaker": "BERNARDO"
+    }
+  }
+}
+
+GET _cat/indices
+GET _cluster/settings
+GET _cat/nodes
+PUT hamlet-pirate/_settings
+{
+  
+    "number_of_replicas": 0
+  
+}
+
+POST _reindex
+{
+  "source": {
+    "index": "hamlet-pirate", 
+    "remote": {
+      "host": "172.31.111.145:9200",
+      "username": "elastic",
+      "password": "elastic-password"
+    }
+  },"dest": {
+    "index": "remote-hamlet-pirate"
+  }
+}
+
+GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+---------------- OTHER cluster
+GET _cluster/settings
+GET _cat/nodes
+
+POST _reindex
+{
+  "source": {
+    "index": "hamlet-pirate", 
+    "remote": {
+      "host": "https://172.31.111.145:9200/", 
+      "username": "elastic",
+      "password": "elastic-password"
+    }
+  },"dest": {
+    "index": "remote-hamlet-pirate"
+  }
+}

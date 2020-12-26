@@ -1,0 +1,247 @@
+ GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+GET _cat/indices
+
+DELETE  hamlet_1,hamlet_2
+
+
+PUT hamlet_1
+{
+  "settings": {
+    "number_of_replicas": 0,
+    "number_of_shards": 1
+  }
+}
+PUT hamlet_1/_doc/_bulk
+{"index":{"_index":"hamlet_1","_id":"C0", "routing":"abc"}}
+{"name":"HAMLET","relationship":[{"name":"HORATIO","type":"friend"},{"name":"GERTRUDE","type":"mother"}]}
+{"index":{"_index":"hamlet_1","_id":"C1","routing":"abc"}}
+{"name":"KING CLAUDIUS","relationship":[{"name":"HAMLET","type":"nephew"}]}
+
+
+GET hamlet_1/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        { "match": { "relationship.name": "gertrude" } },
+        { "match": { "relationship.type": "friend" } }
+      ]
+    }
+  }
+}
+
+GET hamlet_1/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        { "match": { "relationship.name": "gertrude" } } 
+      ]
+    }
+  }
+}
+
+PUT hamlet_2
+{
+  "settings": {
+    "number_of_replicas": 0,
+    "number_of_shards": 1
+  },
+  "mappings": {
+    "properties": {
+      "relationship": {
+        "type": "nested"
+      }
+    },
+    "dynamic_templates": [
+       
+      {
+        "strings": {
+          "match_mapping_type": "string",
+          "mapping": {
+            "type": "keyword" 
+          }
+        }
+      }
+    ]
+  }
+}
+
+POST _reindex
+{
+  "source": {"index": "hamlet_1"},
+  "dest": {"index": "hamlet_2"}
+}
+GET hamlet_2 
+GET hamlet_2/_search
+{
+  "query": {
+    "nested": {
+      "path": "relationship",
+      "query": {
+        "bool": {
+          "must": [
+            { "match": { "relationship.name": "GERTRUDE" } },
+            { "match": { "relationship.type": "friend" } }
+          ]
+        }
+      }
+    }
+  }
+}
+
+GET hamlet_2/_search
+{
+  "query": {
+    "nested": {
+      "path": "relationship",
+      "query": {
+        "bool": {
+          "must": [
+            { "match": { "relationship.name": "GERTRUDE" } } 
+          ]
+        }
+      }
+    }
+  }
+}
+
+PUT hamlet_2/_doc/_bulk
+{"index":{"_index":"hamlet_2","_id":"L0", "routing":"abc"}}
+{"line_number":"1.4.1","speaker":"HAMLET","text_entry":"The air bites shrewdly; it is very cold."}
+{"index":{"_index":"hamlet_2","_id":"L1", "routing":"abc"}}
+{"line_number":"1.4.2","speaker":"HORATIO","text_entry":"It is a nipping and an eager air."}
+{"index":{"_index":"hamlet_2","_id":"L2", "routing":"abc"}}
+{"line_number":"1.4.3","speaker":"HAMLET","text_entry":"What hour now?"}
+
+DELETE hamlet_3
+PUT hamlet_3
+{
+  "mappings" : {
+      "dynamic_templates" : [
+        {
+          "strings" : {
+            "match_mapping_type" : "string",
+            "mapping" : {
+              "type" : "keyword"
+            }
+          }
+        }
+      ],
+      "properties" : {
+        "line_number" : {
+          "type" : "keyword"
+        },
+        "name" : {
+          "type" : "keyword"
+        },
+        "relationship" : {
+          "type" : "nested",
+          "properties" : {
+            "name" : {
+              "type" : "keyword"
+            },
+            "type" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "speaker" : {
+          "type" : "keyword"
+        },
+        "text_entry" : {
+          "type" : "keyword"
+        },
+        "character_or_line": { 
+        "type": "join",
+        "relations": {
+          "character": "line" 
+        }
+      }
+      }
+    },"settings": {
+    "number_of_replicas": 0,
+    "number_of_shards": 1
+  }
+}
+
+POST _reindex
+{
+  "source": {"index": "hamlet_2"},
+  "dest": {"index": "hamlet_3"}
+}
+GET hamlet_3/_doc/C0?routing=abc
+
+GET hamlet_3/_update/C0
+{
+  "doc":{
+    "name" : "HAMLET",
+    "character_or_line":{
+      "name": "character"
+    }
+  }
+}
+GET hamlet_3/_search?routing=abc
+
+PUT _scripts/init_lines
+{
+  "script": {
+    "lang": "painless",
+    "source": """
+    ctx._source.character_or_line = [ "parent": params.characterId  , "name": "line"]
+    """ 
+  }
+}
+
+POST hamlet_3/_forcemerge
+
+POST hamlet_3/_search?routing=abc
+{
+  "query":{
+    "term": {
+      "speaker": {
+        "value": "HAMLET"
+      }
+    }
+  }
+}
+GET hamlet_3/_update_by_query?routing=abc
+{
+  "query":{
+    "term": {
+      "speaker": {
+        "value": "HAMLET"
+      }
+    }
+  },
+  "script": {
+    "id": "init_lines",
+      "params": { "characterId" :  "C0"  }
+    }
+}
+
+GET hamlet_3/_search
+{
+  "query": {
+    "has_parent": {
+      "parent_type": "character",
+      "query": {
+        "match": {
+          "name": "HAMLET"
+        }
+      }
+    }
+  }
+} 
+
+
+
+
+
+

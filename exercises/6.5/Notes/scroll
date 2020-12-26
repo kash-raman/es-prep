@@ -1,0 +1,91 @@
+
+
+POST _scripts/with_response_and_tag
+{
+  "script": {
+    "lang": "mustache",
+    "source": {
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "range": {
+                "response": {
+                  "gte": "{{with_min_response}}",
+                  "lt": "{{ with_max_response}}"
+                }
+              }
+            },
+            {
+              "term": {
+                "tags.keyword": {
+                  "value": "{{ with_tag}}"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+GET _render/template/with_response_and_tag
+{
+ "params": {
+        "with_min_response" :"400",
+    "with_max_response" : "500",
+    "with_tag" : "security"
+    }
+}
+GET _search/template
+{
+    "id": "with_response_and_tag", 
+    "params": {
+            "with_min_response" :"400",
+    "with_max_response" : "500",
+    "with_tag" : "security"
+    }
+}
+
+POST _scripts/with_response_and_tag
+{
+  "script": {
+    "lang": "mustache",
+    "source": "{\"query\":{\"bool\": {\"must\": [ { \"range\": {  \"response\": {  \"gte\": \"{{with_min_response}}\"  \"{{#with_max_response}}\"  , \"{{/with_max_response}}\"  \"{{#with_max_response}}\" \"lt\": \"{{ with_max_response}}\" \"{{/with_max_response}}\"  } } } \"{{#with_tag}}\"  , { \"term\": { \"tags.keyword\": { \"value\": \"{{ with_tag}}\" }  } } \" {{/with_tag}}\" ] } } }"
+  }
+}
+GET _render/template
+{
+  "id": "with_response_and_tag",
+   "params": {
+            "with_min_response" :"500", 
+    "with_tag" : "security"
+    }
+}
+#TODO fix scripting issue
+ GET _search/template
+{
+    "id": "with_response_and_tag", 
+    "params": {
+            "with_min_response" :"500" 
+    }
+}
+#TODO fix scripting issue
+ GET _search/template
+{
+    "id": "with_response_and_tag", 
+    "params": {
+            "with_min_response" :"500", 
+    "with_tag" : "security"
+    }
+}
+
+
+GET kibana_sample_data_flights/_search
+{
+  "query": {
+    "script": {
+      "script": " doc['OriginWeather'].value == doc['DestWeather'].value"
+    }
+  }
+}
