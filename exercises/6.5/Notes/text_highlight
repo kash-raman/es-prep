@@ -234,3 +234,101 @@ GET kibana_sample_data_ecommerce/_search
   
 }
 
+GET kibana_sample_data_logs/_search
+
+
+GET kibana_sample_data_logs/_search
+{
+  "size": 50, 
+  "from": 0, 
+  "query": {
+    "match": {
+      "message": "Firefox"
+    }
+  }
+}
+GET kibana_sample_data_logs/_search
+{
+  "size": 50, 
+  "from": 50, 
+  "query": {
+    "match": {
+      "message": "Firefox"
+    }
+  }
+}
+
+GET kibana_sample_data_logs/_search
+{
+  "size": 50, 
+  "from": 50, 
+  "query": {
+     "query_string": {
+       "default_field": "message",
+       "query" : "Firefox OR Kibana"
+     }
+  },"highlight": {
+    "fields": {
+      "*":{}
+    }
+  }
+}
+
+
+GET kibana_sample_data_logs/_search
+{
+  "size": 50 ,
+  "query": {
+    "query_string": {
+       "default_field": "message",
+       "query" : "Firefox AND Kibana"
+     }
+  },"highlight": {
+    "fields": {
+      "*":{}
+    },
+    "pre_tags": ["{{"]
+    ,"post_tags": ["}}"]
+  }
+}
+
+
+
+GET kibana_sample_data_logs/_search
+{
+  "query": {
+    "match_phrase": {
+      "message": "HTTP/1.1 200 51"
+    }
+  },"sort": [
+    {
+      "machine.os.keyword": {
+        "order": "desc"
+      },
+      "timestamp": {
+        "order": "asc"
+      }
+    }
+  ]
+}
+
+
+GET kibana_sample_data_ecommerce/_search
+
+GET kibana_sample_data_ecommerce/_search
+{
+  "query": {
+    "term": {
+      "day_of_week": {
+        "value": "Monday"
+      }
+    }
+  },"sort": [
+    {
+      "products.base_price": {
+        "order": "desc",
+        "mode": "min"
+      }
+    }
+  ]
+}

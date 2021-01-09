@@ -23,35 +23,8 @@
    "size": 50
  }
  
-#TODO 26 -option 1 highlight
-GET olympic-events-fixed/_search
-{
-  "query": {
-    "query_string": {
-       
-      "query": "( ( (weight: >=60 AND <=70) OR (age: <20)) AND (event:swimming) )"
-    }
-  },
-  "highlight": {
-    "pre_tags": ["{{"], 
-    "post_tags": ["}}"],
-    "fields": {
-      "*": {"fragment_size" : 150, "number_of_fragments" : 3}
-    }
-    
-  },
-  "sort": [
-    {
-      "athleteName.keyword": {
-        "order": "desc"
-      }
-    }
-  ],
-   "size": 50
-}
-
-#TODO 26 -option 2 highlight
-GET olympic-events-fixed/_search
+#26 - for highlight to work- change add keyword mapping or used named_queries.
+ GET olympic-events-fixed/_search
 {
   "size": 50,
   "query": {
@@ -65,16 +38,20 @@ GET olympic-events-fixed/_search
       ],
       "should": [
         {
-          "range": {
+         
+          "range": { 
             "weight": {
+               "_name" : "weight",
               "gte": 60,
-              "lte": 70
+              "lt": 70
             }
           }  
         },
         {
           "range": {
+            
             "age": {
+              "_name" : "age",
               "lt": 20
             }
           }
@@ -89,15 +66,11 @@ GET olympic-events-fixed/_search
         "order": "desc"
       }
     }
-  ], 
-  "highlight": {
-    "fields": {
-       
-       "*": { "fragment_size" : 150, "number_of_fragments" : 3 }
+  ] 
          
-       }
-    }
+ 
   }
+ 
   
   PUT olympic-noc-regions
   {

@@ -1,0 +1,4188 @@
+{
+  "took" : 50,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 10000,
+      "relation" : "gte"
+    },
+    "max_score" : null,
+    "hits" : [ ]
+  },
+  "aggregations" : {
+    "flights_every_10_days" : {
+      "buckets" : [
+        {
+          "key_as_string" : "2020-12-14T00:00:00.000Z",
+          "key" : 1607904000000,
+          "doc_count" : 980
+        },
+        {
+          "key_as_string" : "2020-12-24T00:00:00.000Z",
+          "key" : 1608768000000,
+          "doc_count" : 3179
+        },
+        {
+          "key_as_string" : "2021-01-03T00:00:00.000Z",
+          "key" : 1609632000000,
+          "doc_count" : 3006
+        },
+        {
+          "key_as_string" : "2021-01-13T00:00:00.000Z",
+          "key" : 1610496000000,
+          "doc_count" : 3210
+        },
+        {
+          "key_as_string" : "2021-01-23T00:00:00.000Z",
+          "key" : 1611360000000,
+          "doc_count" : 2684
+        }
+      ]
+    },
+    "popular_carriers" : {
+      "doc_count_error_upper_bound" : 0,
+      "sum_other_doc_count" : 0,
+      "buckets" : [
+        {
+          "key" : "Logstash Airways",
+          "doc_count" : 3331,
+          "carrier_stats_delay" : {
+            "count" : 3331,
+            "min" : 0.0,
+            "max" : 360.0,
+            "avg" : 49.55268688081657,
+            "sum" : 165060.0
+          },
+          "carrier_max_delay" : {
+            "value" : 360.0
+          }
+        },
+        {
+          "key" : "JetBeats",
+          "doc_count" : 3274,
+          "carrier_stats_delay" : {
+            "count" : 3274,
+            "min" : 0.0,
+            "max" : 360.0,
+            "avg" : 45.957544288332315,
+            "sum" : 150465.0
+          },
+          "carrier_max_delay" : {
+            "value" : 360.0
+          }
+        },
+        {
+          "key" : "Kibana Airlines",
+          "doc_count" : 3234,
+          "carrier_stats_delay" : {
+            "count" : 3234,
+            "min" : 0.0,
+            "max" : 360.0,
+            "avg" : 46.368274582560296,
+            "sum" : 149955.0
+          },
+          "carrier_max_delay" : {
+            "value" : 360.0
+          }
+        },
+        {
+          "key" : "ES-Air",
+          "doc_count" : 3220,
+          "carrier_stats_delay" : {
+            "count" : 3220,
+            "min" : 0.0,
+            "max" : 360.0,
+            "avg" : 47.41304347826087,
+            "sum" : 152670.0
+          },
+          "carrier_max_delay" : {
+            "value" : 360.0
+          }
+        }
+      ]
+    },
+    "flights_by_day" : {
+      "buckets" : [
+        {
+          "key_as_string" : "2020-12-21T00:00:00.000Z",
+          "key" : 1608508800000,
+          "doc_count" : 339,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 231,
+            "buckets" : [
+              {
+                "key" : "Xi'an",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Zurich",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Venice",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Hyderabad",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Rome",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Treviso",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 9
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 339,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "Q9LzpHYBIlonj1MCLz8j",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Mexico City"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "RNLzpHYBIlonj1MCLz8j",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Shanghai"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "RdLzpHYBIlonj1MCLz8j",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Hyderabad"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 14.0,
+            "keys" : [
+              "Xi'an"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2020-12-22T00:00:00.000Z",
+          "key" : 1608595200000,
+          "doc_count" : 298,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 187,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 19
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 11
+              },
+              {
+                "key" : "London",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Venice",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Milan",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Torino",
+                "doc_count" : 8
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 298,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "-dLzpHYBIlonj1MCLz8l",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Melbourne"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "-tLzpHYBIlonj1MCLz8l",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Rochester"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "-9LzpHYBIlonj1MCLz8l",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Belogorsk"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 19.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2020-12-23T00:00:00.000Z",
+          "key" : 1608681600000,
+          "doc_count" : 343,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 223,
+            "buckets" : [
+              {
+                "key" : "Xi'an",
+                "doc_count" : 16
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Oslo",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Sydney",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Zurich",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Buenos Aires",
+                "doc_count" : 10
+              },
+              {
+                "key" : "London",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Milan",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Munich",
+                "doc_count" : 10
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 343,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "YNLzpHYBIlonj1MCNESX",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Rochester"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "YdLzpHYBIlonj1MCNESX",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "London"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "YtLzpHYBIlonj1MCNESX",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Ottawa"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 16.0,
+            "keys" : [
+              "Xi'an"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2020-12-24T00:00:00.000Z",
+          "key" : 1608768000000,
+          "doc_count" : 323,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 199,
+            "buckets" : [
+              {
+                "key" : "Shanghai",
+                "doc_count" : 16
+              },
+              {
+                "key" : "Zurich",
+                "doc_count" : 16
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Sydney",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Milan",
+                "doc_count" : 10
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 323,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "btLzpHYBIlonj1MCNESX",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "London"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "b9LzpHYBIlonj1MCNESX",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Belogorsk"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "cNLzpHYBIlonj1MCNESX",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Shanghai"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 16.0,
+            "keys" : [
+              "Shanghai",
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2020-12-25T00:00:00.000Z",
+          "key" : 1608854400000,
+          "doc_count" : 339,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 210,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 21
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 16
+              },
+              {
+                "key" : "Venice",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Stockholm",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Buenos Aires",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 10
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 339,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "pdLzpHYBIlonj1MCQkcB",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Naples"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "ptLzpHYBIlonj1MCQkcB",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Pisa"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "p9LzpHYBIlonj1MCQkcB",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Belogorsk"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 21.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2020-12-26T00:00:00.000Z",
+          "key" : 1608940800000,
+          "doc_count" : 346,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 209,
+            "buckets" : [
+              {
+                "key" : "Xi'an",
+                "doc_count" : 20
+              },
+              {
+                "key" : "Zurich",
+                "doc_count" : 17
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 15
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 13
+              },
+              {
+                "key" : "London",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Hyderabad",
+                "doc_count" : 10
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 346,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "pNLzpHYBIlonj1MCREuL",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Raleigh/Durham"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "pdLzpHYBIlonj1MCREuL",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Xi'an"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "ptLzpHYBIlonj1MCREuL",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Winnipeg"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 20.0,
+            "keys" : [
+              "Xi'an"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2020-12-27T00:00:00.000Z",
+          "key" : 1609027200000,
+          "doc_count" : 214,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 122,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 15
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Torino",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Treviso",
+                "doc_count" : 7
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 7
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 7
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 6
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 214,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "RtLzpHYBIlonj1MCREyL",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Pisa"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "R9LzpHYBIlonj1MCREyL",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Tokyo"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "SNLzpHYBIlonj1MCREyL",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Osaka"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 15.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2020-12-28T00:00:00.000Z",
+          "key" : 1609113600000,
+          "doc_count" : 347,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 219,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 19
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 17
+              },
+              {
+                "key" : "Venice",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Quito",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Buenos Aires",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Ottawa",
+                "doc_count" : 10
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 347,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "BNLzpHYBIlonj1MCR1Gi",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Tokyo"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "BdLzpHYBIlonj1MCR1Gi",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Xi'an"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "BtLzpHYBIlonj1MCR1Gi",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Tokyo"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 19.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2020-12-29T00:00:00.000Z",
+          "key" : 1609200000000,
+          "doc_count" : 332,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 220,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 15
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 12
+              },
+              {
+                "key" : "London",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Osaka",
+                "doc_count" : 9
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 332,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "U9LzpHYBIlonj1MCSlR-",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Manchester"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "VNLzpHYBIlonj1MCSlR-",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Lima"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "VdLzpHYBIlonj1MCSlR-",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Treviso"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 15.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2020-12-30T00:00:00.000Z",
+          "key" : 1609286400000,
+          "doc_count" : 315,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 214,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 16
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Munich",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Treviso",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Hyderabad",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Moscow",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Oslo",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Ottawa",
+                "doc_count" : 8
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 315,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "n9LzpHYBIlonj1MCSlV-",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Zurich"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "oNLzpHYBIlonj1MCSlV-",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Winnipeg"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "odLzpHYBIlonj1MCSlV-",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Moscow"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 16.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2020-12-31T00:00:00.000Z",
+          "key" : 1609372800000,
+          "doc_count" : 299,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 188,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 18
+              },
+              {
+                "key" : "Torino",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Treviso",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 9
+              },
+              {
+                "key" : "London",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Moscow",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Quito",
+                "doc_count" : 8
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 299,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "wtLzpHYBIlonj1MCTFrB",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "San Diego"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "w9LzpHYBIlonj1MCTFrB",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Sydney"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "xNLzpHYBIlonj1MCTFrB",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Xi'an"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 18.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-01T00:00:00.000Z",
+          "key" : 1609459200000,
+          "doc_count" : 335,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 212,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 21
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 15
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 12
+              },
+              {
+                "key" : "London",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Torino",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Oslo",
+                "doc_count" : 9
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 335,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "7dLzpHYBIlonj1MCTFvB",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Vienna"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "7tLzpHYBIlonj1MCTFvB",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Dublin"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "79LzpHYBIlonj1MCTFvB",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Washington"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 21.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-02T00:00:00.000Z",
+          "key" : 1609545600000,
+          "doc_count" : 329,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 213,
+            "buckets" : [
+              {
+                "key" : "Xi'an",
+                "doc_count" : 16
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Torino",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Zurich",
+                "doc_count" : 12
+              },
+              {
+                "key" : "London",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Milan",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Venice",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 10
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 329,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "ttLzpHYBIlonj1MCUmVG",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "San Francisco"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "t9LzpHYBIlonj1MCUmVG",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Jeju City"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "uNLzpHYBIlonj1MCUmVG",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Oslo"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 16.0,
+            "keys" : [
+              "Xi'an"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-03T00:00:00.000Z",
+          "key" : 1609632000000,
+          "doc_count" : 220,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 136,
+            "buckets" : [
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Venice",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Zurich",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Treviso",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 7
+              },
+              {
+                "key" : "London",
+                "doc_count" : 7
+              },
+              {
+                "key" : "Milan",
+                "doc_count" : 7
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 7
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 220,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "VdLzpHYBIlonj1MCUmZG",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Zurich"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "VtLzpHYBIlonj1MCUmZG",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Tokyo"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "V9LzpHYBIlonj1MCUmZG",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Seattle"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 12.0,
+            "keys" : [
+              "Winnipeg"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-04T00:00:00.000Z",
+          "key" : 1609718400000,
+          "doc_count" : 339,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 212,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 16
+              },
+              {
+                "key" : "Stockholm",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Treviso",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 9
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 339,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "MdLzpHYBIlonj1MCUmdG",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Mexico City"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "MtLzpHYBIlonj1MCUmdG",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Warsaw"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "M9LzpHYBIlonj1MCUmdG",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Stockholm"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 16.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-05T00:00:00.000Z",
+          "key" : 1609804800000,
+          "doc_count" : 323,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 191,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 24
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 20
+              },
+              {
+                "key" : "Venice",
+                "doc_count" : 16
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Torino",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Quito",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 8
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 323,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "eNLzpHYBIlonj1MCU2ru",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Tucson"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "edLzpHYBIlonj1MCU2ru",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Xi'an"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "etLzpHYBIlonj1MCU2ru",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Zurich"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 24.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-06T00:00:00.000Z",
+          "key" : 1609891200000,
+          "doc_count" : 314,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 196,
+            "buckets" : [
+              {
+                "key" : "Tokyo",
+                "doc_count" : 17
+              },
+              {
+                "key" : "London",
+                "doc_count" : 15
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Torino",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Zurich",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Rome",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Sydney",
+                "doc_count" : 8
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 314,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "o9LzpHYBIlonj1MCVW_J",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Warsaw"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "pNLzpHYBIlonj1MCVW_J",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Shanghai"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "pdLzpHYBIlonj1MCVW_J",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "London"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 17.0,
+            "keys" : [
+              "Tokyo"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-07T00:00:00.000Z",
+          "key" : 1609977600000,
+          "doc_count" : 332,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 210,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 22
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 16
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Venice",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Stockholm",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Milan",
+                "doc_count" : 8
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 332,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "3dLzpHYBIlonj1MCVXDU",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Reno"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "3tLzpHYBIlonj1MCVXDU",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Milan"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "39LzpHYBIlonj1MCVXDU",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Tokyo"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 22.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-08T00:00:00.000Z",
+          "key" : 1610064000000,
+          "doc_count" : 322,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 191,
+            "buckets" : [
+              {
+                "key" : "Verona",
+                "doc_count" : 17
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 17
+              },
+              {
+                "key" : "Zurich",
+                "doc_count" : 16
+              },
+              {
+                "key" : "Torino",
+                "doc_count" : 15
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Ottawa",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 11
+              },
+              {
+                "key" : "London",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Moscow",
+                "doc_count" : 10
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 322,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "HdLzpHYBIlonj1MCV3RS",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Winnipeg"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "HtLzpHYBIlonj1MCV3RS",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Rome"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "H9LzpHYBIlonj1MCV3RS",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Shanghai"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 17.0,
+            "keys" : [
+              "Verona",
+              "Xi'an"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-09T00:00:00.000Z",
+          "key" : 1610150400000,
+          "doc_count" : 301,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 185,
+            "buckets" : [
+              {
+                "key" : "Tokyo",
+                "doc_count" : 16
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Sydney",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Quito",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Treviso",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Venice",
+                "doc_count" : 10
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 301,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "R9LzpHYBIlonj1MCWXlW",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Xi'an"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "SNLzpHYBIlonj1MCWXlW",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Xi'an"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "SdLzpHYBIlonj1MCWXlW",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Milan"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 16.0,
+            "keys" : [
+              "Tokyo"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-10T00:00:00.000Z",
+          "key" : 1610236800000,
+          "doc_count" : 211,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 124,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Buenos Aires",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Torino",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Sydney",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 8
+              },
+              {
+                "key" : "London",
+                "doc_count" : 7
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 7
+              },
+              {
+                "key" : "Venice",
+                "doc_count" : 7
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 211,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "dNLzpHYBIlonj1MCWXpX",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Quito"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "ddLzpHYBIlonj1MCWXpX",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Bangalore"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "dtLzpHYBIlonj1MCWXpX",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Chengdu"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 11.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-11T00:00:00.000Z",
+          "key" : 1610323200000,
+          "doc_count" : 337,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 221,
+            "buckets" : [
+              {
+                "key" : "Shanghai",
+                "doc_count" : 15
+              },
+              {
+                "key" : "Buenos Aires",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 10
+              },
+              {
+                "key" : "London",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Quito",
+                "doc_count" : 9
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 337,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "L9LzpHYBIlonj1MCW3_E",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Chitose / Tomakomai"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "MNLzpHYBIlonj1MCW3_E",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Melbourne"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "MdLzpHYBIlonj1MCW3_E",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Greenville"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 15.0,
+            "keys" : [
+              "Shanghai"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-12T00:00:00.000Z",
+          "key" : 1610409600000,
+          "doc_count" : 307,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 201,
+            "buckets" : [
+              {
+                "key" : "Shanghai",
+                "doc_count" : 16
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Torino",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Zurich",
+                "doc_count" : 9
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 307,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "gNLzpHYBIlonj1MCW4DF",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Vienna"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "gdLzpHYBIlonj1MCW4DF",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Durban"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "gtLzpHYBIlonj1MCW4DF",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Hyderabad"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 16.0,
+            "keys" : [
+              "Shanghai"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-13T00:00:00.000Z",
+          "key" : 1610496000000,
+          "doc_count" : 319,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 201,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 21
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 18
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Milan",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Quito",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 7
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 319,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "p9LzpHYBIlonj1MCXYOS",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Milan"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "qNLzpHYBIlonj1MCXYOS",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "New Delhi"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "qdLzpHYBIlonj1MCXYOS",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Winnipeg"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 21.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-14T00:00:00.000Z",
+          "key" : 1610582400000,
+          "doc_count" : 335,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 210,
+            "buckets" : [
+              {
+                "key" : "Xi'an",
+                "doc_count" : 19
+              },
+              {
+                "key" : "Zurich",
+                "doc_count" : 18
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Venice",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Montreal",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Moscow",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Treviso",
+                "doc_count" : 8
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 335,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "5tLzpHYBIlonj1MCXYST",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Edmonton"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "59LzpHYBIlonj1MCXYST",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Tokyo"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "6NLzpHYBIlonj1MCXYST",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Verona"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 19.0,
+            "keys" : [
+              "Xi'an"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-15T00:00:00.000Z",
+          "key" : 1610668800000,
+          "doc_count" : 346,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 234,
+            "buckets" : [
+              {
+                "key" : "Shanghai",
+                "doc_count" : 15
+              },
+              {
+                "key" : "Zurich",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 11
+              },
+              {
+                "key" : "London",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Sydney",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 9
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 346,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "2NLzpHYBIlonj1MCXoil",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Guangzhou"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "2dLzpHYBIlonj1MCXoil",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Paris"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "2tLzpHYBIlonj1MCXoil",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Manchester"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 15.0,
+            "keys" : [
+              "Shanghai"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-16T00:00:00.000Z",
+          "key" : 1610755200000,
+          "doc_count" : 302,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 187,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 21
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Venice",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 8
+              },
+              {
+                "key" : "London",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Milan",
+                "doc_count" : 8
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 302,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "JtLzpHYBIlonj1MCYIwl",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Xi'an"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "J9LzpHYBIlonj1MCYIwl",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Stockholm"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "KNLzpHYBIlonj1MCYIwl",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Tokyo"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 21.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-17T00:00:00.000Z",
+          "key" : 1610841600000,
+          "doc_count" : 241,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 155,
+            "buckets" : [
+              {
+                "key" : "Warsaw",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Zurich",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 11
+              },
+              {
+                "key" : "London",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 7
+              },
+              {
+                "key" : "Moscow",
+                "doc_count" : 7
+              },
+              {
+                "key" : "Rome",
+                "doc_count" : 7
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 7
+              },
+              {
+                "key" : "Torino",
+                "doc_count" : 7
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 241,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "ddLzpHYBIlonj1MCYY3G",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Spokane"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "dtLzpHYBIlonj1MCYY3G",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "London"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "d9LzpHYBIlonj1MCYY3G",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Winnipeg"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 12.0,
+            "keys" : [
+              "Warsaw",
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-18T00:00:00.000Z",
+          "key" : 1610928000000,
+          "doc_count" : 345,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 235,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 16
+              },
+              {
+                "key" : "Stockholm",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Moscow",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Munich",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Buenos Aires",
+                "doc_count" : 8
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 345,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "RdLzpHYBIlonj1MCYY7H",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Milan"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "RtLzpHYBIlonj1MCYY7H",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Belleville"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "R9LzpHYBIlonj1MCYY7H",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Dubai"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 16.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-19T00:00:00.000Z",
+          "key" : 1611014400000,
+          "doc_count" : 336,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 218,
+            "buckets" : [
+              {
+                "key" : "Xi'an",
+                "doc_count" : 18
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Zurich",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Treviso",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Torino",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 9
+              },
+              {
+                "key" : "London",
+                "doc_count" : 9
+              },
+              {
+                "key" : "San Juan",
+                "doc_count" : 9
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 336,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "ktLzpHYBIlonj1MCY5GJ",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Vienna"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "k9LzpHYBIlonj1MCY5GJ",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Edmonton"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "lNLzpHYBIlonj1MCY5GJ",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Montreal"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 18.0,
+            "keys" : [
+              "Xi'an"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-20T00:00:00.000Z",
+          "key" : 1611100800000,
+          "doc_count" : 331,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 209,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 20
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 16
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 12
+              },
+              {
+                "key" : "London",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Treviso",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Pisa",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 9
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 331,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "4tLzpHYBIlonj1MCY5KK",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Stockholm"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "49LzpHYBIlonj1MCY5KK",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Tokyo"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "5NLzpHYBIlonj1MCY5KK",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Moscow"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 20.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-21T00:00:00.000Z",
+          "key" : 1611187200000,
+          "doc_count" : 325,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 201,
+            "buckets" : [
+              {
+                "key" : "Shanghai",
+                "doc_count" : 17
+              },
+              {
+                "key" : "Zurich",
+                "doc_count" : 17
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Buenos Aires",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Pisa",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Venice",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 9
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 325,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "IdLzpHYBIlonj1MCZZZM",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Hyderabad"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "ItLzpHYBIlonj1MCZZZM",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Greensboro"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "I9LzpHYBIlonj1MCZZZM",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Pittsburgh"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 17.0,
+            "keys" : [
+              "Shanghai",
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-22T00:00:00.000Z",
+          "key" : 1611273600000,
+          "doc_count" : 330,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 210,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 20
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 19
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 15
+              },
+              {
+                "key" : "Buenos Aires",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Torino",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Venice",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Hyderabad",
+                "doc_count" : 7
+              },
+              {
+                "key" : "London",
+                "doc_count" : 7
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 330,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "WtLzpHYBIlonj1MCZpnp",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Venice"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "W9LzpHYBIlonj1MCZpnp",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Nashville"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "XNLzpHYBIlonj1MCZpnp",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Shanghai"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 20.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-23T00:00:00.000Z",
+          "key" : 1611360000000,
+          "doc_count" : 298,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 177,
+            "buckets" : [
+              {
+                "key" : "Xi'an",
+                "doc_count" : 19
+              },
+              {
+                "key" : "Zurich",
+                "doc_count" : 17
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 15
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Treviso",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 9
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 298,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "pNLzpHYBIlonj1MCZprq",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Zurich"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "pdLzpHYBIlonj1MCZprq",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Xi'an"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "ptLzpHYBIlonj1MCZprq",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Winnipeg"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 19.0,
+            "keys" : [
+              "Xi'an"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-24T00:00:00.000Z",
+          "key" : 1611446400000,
+          "doc_count" : 223,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 134,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 20
+              },
+              {
+                "key" : "Torino",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 7
+              },
+              {
+                "key" : "London",
+                "doc_count" : 7
+              },
+              {
+                "key" : "Sydney",
+                "doc_count" : 7
+              },
+              {
+                "key" : "Melbourne",
+                "doc_count" : 6
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 223,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "ztLzpHYBIlonj1MCZ5vb",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Phoenix"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "z9LzpHYBIlonj1MCZ5vb",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Zurich"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "0NLzpHYBIlonj1MCZ5vb",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Kansas City"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 20.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-25T00:00:00.000Z",
+          "key" : 1611532800000,
+          "doc_count" : 326,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 209,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 20
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Sydney",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Treviso",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Oslo",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Stockholm",
+                "doc_count" : 9
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 326,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "rdLzpHYBIlonj1MCZ5zb",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Tokyo"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "rtLzpHYBIlonj1MCZ5zb",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Tokyo"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "r9LzpHYBIlonj1MCZ5zb",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Mexico City"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 20.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-26T00:00:00.000Z",
+          "key" : 1611619200000,
+          "doc_count" : 338,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 216,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 23
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 18
+              },
+              {
+                "key" : "Buenos Aires",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 12
+              },
+              {
+                "key" : "London",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Venice",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Milan",
+                "doc_count" : 8
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 338,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "59LzpHYBIlonj1MCap_B",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Oslo"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "6NLzpHYBIlonj1MCap_B",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Shanghai"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "6dLzpHYBIlonj1MCap_B",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Zurich"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 23.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-27T00:00:00.000Z",
+          "key" : 1611705600000,
+          "doc_count" : 326,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 202,
+            "buckets" : [
+              {
+                "key" : "Tokyo",
+                "doc_count" : 17
+              },
+              {
+                "key" : "Zurich",
+                "doc_count" : 17
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 15
+              },
+              {
+                "key" : "Moscow",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Venice",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Torino",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Treviso",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 9
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 326,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "OdLzpHYBIlonj1MCbaG-",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Xi'an"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "OtLzpHYBIlonj1MCbaG-",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Tucson"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "O9LzpHYBIlonj1MCbaG-",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Naples"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 17.0,
+            "keys" : [
+              "Tokyo",
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-28T00:00:00.000Z",
+          "key" : 1611792000000,
+          "doc_count" : 300,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 192,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 19
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Buenos Aires",
+                "doc_count" : 10
+              },
+              {
+                "key" : "London",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Venice",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Milan",
+                "doc_count" : 8
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 300,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "f9LzpHYBIlonj1MCbaK_",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Mexico City"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "gNLzpHYBIlonj1MCbaK_",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Cleveland"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "gdLzpHYBIlonj1MCbaK_",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Zurich"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 19.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-29T00:00:00.000Z",
+          "key" : 1611878400000,
+          "doc_count" : 329,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 214,
+            "buckets" : [
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 15
+              },
+              {
+                "key" : "Verona",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 13
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Treviso",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Zurich",
+                "doc_count" : 11
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Pisa",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Rome",
+                "doc_count" : 9
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 329,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "n9LzpHYBIlonj1MCbqXx",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Stockholm"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "oNLzpHYBIlonj1MCbqXx",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Rome"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "odLzpHYBIlonj1MCbqXx",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Warsaw"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 15.0,
+            "keys" : [
+              "Winnipeg"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-30T00:00:00.000Z",
+          "key" : 1611964800000,
+          "doc_count" : 339,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 200,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 27
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 22
+              },
+              {
+                "key" : "London",
+                "doc_count" : 15
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 15
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 15
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Stockholm",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Buenos Aires",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Milan",
+                "doc_count" : 8
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 339,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "6NLzpHYBIlonj1MCb6a5",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Warsaw"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "6dLzpHYBIlonj1MCb6a5",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "London"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "6tLzpHYBIlonj1MCb6a5",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Zurich"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 27.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        },
+        {
+          "key_as_string" : "2021-01-31T00:00:00.000Z",
+          "key" : 1612051200000,
+          "doc_count" : 205,
+          "destinations_by_day" : {
+            "doc_count_error_upper_bound" : 0,
+            "sum_other_doc_count" : 108,
+            "buckets" : [
+              {
+                "key" : "Zurich",
+                "doc_count" : 15
+              },
+              {
+                "key" : "Xi'an",
+                "doc_count" : 14
+              },
+              {
+                "key" : "Winnipeg",
+                "doc_count" : 12
+              },
+              {
+                "key" : "Tokyo",
+                "doc_count" : 10
+              },
+              {
+                "key" : "Venice",
+                "doc_count" : 9
+              },
+              {
+                "key" : "Belogorsk",
+                "doc_count" : 8
+              },
+              {
+                "key" : "Shanghai",
+                "doc_count" : 8
+              },
+              {
+                "key" : "London",
+                "doc_count" : 7
+              },
+              {
+                "key" : "Vienna",
+                "doc_count" : 7
+              },
+              {
+                "key" : "Warsaw",
+                "doc_count" : 7
+              }
+            ]
+          },
+          "popular_destinations_by_day" : {
+            "hits" : {
+              "total" : {
+                "value" : 205,
+                "relation" : "eq"
+              },
+              "max_score" : 1.0,
+              "hits" : [
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "O9LzpHYBIlonj1MCb6i6",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Torino"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "PNLzpHYBIlonj1MCb6i6",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Warsaw"
+                  }
+                },
+                {
+                  "_index" : "kibana_sample_data_flights",
+                  "_type" : "_doc",
+                  "_id" : "PdLzpHYBIlonj1MCb6i6",
+                  "_score" : 1.0,
+                  "_source" : {
+                    "DestCityName" : "Vienna"
+                  }
+                }
+              ]
+            }
+          },
+          "most_popular_destination_of_the_day" : {
+            "value" : 15.0,
+            "keys" : [
+              "Zurich"
+            ]
+          }
+        }
+      ]
+    },
+    "cardinality_dest_cities" : {
+      "value" : 143
+    },
+    "cardinality_origin_cities" : {
+      "value" : 143
+    },
+    "avg_price_histogram" : {
+      "buckets" : [
+        {
+          "key" : 0.0,
+          "doc_count" : 1147
+        },
+        {
+          "key" : 250.0,
+          "doc_count" : 3264
+        },
+        {
+          "key" : 500.0,
+          "doc_count" : 3862
+        },
+        {
+          "key" : 750.0,
+          "doc_count" : 3982
+        },
+        {
+          "key" : 1000.0,
+          "doc_count" : 804
+        }
+      ]
+    },
+    "popular_origin_cities" : {
+      "doc_count_error_upper_bound" : 0,
+      "sum_other_doc_count" : 11431,
+      "buckets" : [
+        {
+          "key" : "Rome",
+          "doc_count" : 418
+        },
+        {
+          "key" : "London",
+          "doc_count" : 380
+        },
+        {
+          "key" : "Quito",
+          "doc_count" : 285
+        },
+        {
+          "key" : "Osaka",
+          "doc_count" : 274
+        },
+        {
+          "key" : "Seoul",
+          "doc_count" : 271
+        }
+      ]
+    },
+    "stats_flight_time" : {
+      "count" : 13059,
+      "min" : 0.0,
+      "max" : 1902.9019775390625,
+      "avg" : 511.1278424178014,
+      "sum" : 6674818.4941340685
+    },
+    "max_distance" : {
+      "value" : 19881.482421875
+    },
+    "day_with_most_flights" : {
+      "value" : 347.0,
+      "keys" : [
+        "2020-12-28T00:00:00.000Z"
+      ]
+    },
+    "day_with_the_most_popular_destination_over_all_days" : {
+      "value" : 27.0,
+      "keys" : [
+        "2021-01-30T00:00:00.000Z"
+      ]
+    }
+  }
+}

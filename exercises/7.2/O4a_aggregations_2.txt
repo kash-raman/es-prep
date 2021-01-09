@@ -1,0 +1,110 @@
+GET kibana_sample_data_flights/_search
+{
+  "size": 0,
+  "aggs": {
+    "max_distance": {
+      "max": {
+        "field": "DistanceKilometers"
+      }
+    },
+    "stats_flight_time":{
+      "stats": {
+        "field": "FlightTimeMin"
+      }
+    },
+    "cardinality_origin_cities":{
+      "cardinality": {
+        "field": "OriginCityName"
+      }
+    },
+    "cardinality_dest_cities":{
+      "cardinality": {
+        "field": "DestCityName"
+      }
+    },
+    "popular_origin_cities":{
+      "terms": {
+        "field": "OriginCityName",
+        "size": 5,
+        "order": {
+          "_count": "desc"
+        }
+      }
+    },
+    "avg_price_histogram":{
+      "histogram": {
+        "field": "AvgTicketPrice",
+        "interval": 250
+      }
+    },
+    "popular_carriers":{
+      "terms": {
+        "field": "Carrier",
+        "size": 10
+      },
+      "aggs": {
+        "carrier_stats_delay": {
+           "stats": {
+             "field": "FlightDelayMin"
+           }
+        },
+        "carrier_max_delay":{
+          "max": {
+            "field": "FlightDelayMin"
+          }
+        }
+      }
+    },
+    "flights_every_10_days":{
+      "date_histogram": {
+        "field": "timestamp",
+        "fixed_interval": "10d"
+      }
+    },
+    "flights_by_day":{
+      "date_histogram": {
+        "field": "timestamp",
+        "fixed_interval": "1d"
+      },
+      "aggs": {
+        "destinations_by_day": {
+          "terms": {
+            "field": "DestCityName",
+            "size": 10
+            
+            
+          },"aggs": {
+           
+        "popular_destinations_by_day":{
+          "top_hits": {
+            "size": 3,
+            "_source": {
+              "includes": "DestCityName"
+            }
+          }
+        } 
+          }
+          
+        }
+        ,"most_popular_destination_of_the_day":{
+         "max_bucket": {
+           "buckets_path": "destinations_by_day._count" 
+           
+         }
+        
+      }
+      }
+    } ,
+      "day_with_most_flights":{
+        "max_bucket": {
+          "buckets_path": "flights_by_day._count"
+        }
+      },
+      "day_with_the_most_popular_destination_over_all_days":{
+        "max_bucket": {
+          "buckets_path": "flights_by_day>most_popular_destination_of_the_day"
+        }
+      }
+      
+  }
+}
